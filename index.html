@@ -232,13 +232,6 @@
       font-weight: 850;
       font-size: 16px;
     }
-    .notice {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px 20px 42px;
-      color: #5b677d;
-      font-size: 13px;
-    }
     footer {
       background: #101827;
       color: rgba(255,255,255,.72);
@@ -400,8 +393,7 @@
       <div class="menu">
         <a href="#consulting">상담 분야</a>
         <a href="#process">상담 절차</a>
-        <a href="#contact" onclick="openConsultPopup(); return false;">상담 신청</a>
-        <a href="#notice">안내사항</a>
+        <a href="javascript:void(0)" class="js-consult-open" onclick="openConsultPopup(); return false;">상담 신청</a>
       </div>
     </nav>
   </header>
@@ -413,7 +405,7 @@
         <h1>프라임인슈랩<br>최상의 보험 컨설팅</h1>
         <p>건강보험 · 간편보험 · 운전자보험 · 자동차보험 상담 안내. 가입 가능 여부 확인부터 보장 점검, 보험금 청구 도움까지 상담해드립니다.</p>
         <div class="buttons">
-          <a class="btn btn-primary" href="#contact" onclick="openConsultPopup(); return false;">상담 신청하기</a>
+          <a class="btn btn-primary js-consult-open" href="javascript:void(0)" onclick="openConsultPopup(); return false;">상담 신청하기</a>
           <a class="btn btn-kakao" href="https://open.kakao.com/o/sLJc2gxi" target="_blank" rel="noopener">카카오톡 상담하기</a>
         </div>
       </section>
@@ -523,12 +515,6 @@
     </div>
   </section>
 
-  <section id="notice" class="notice">
-    <p><strong>안내사항</strong></p>
-    <p>본 홈페이지는 보험 상담 신청 및 안내를 위한 페이지입니다. 구체적인 보험상품 내용, 보험료, 보장내용은 상담 시 상품설명서와 약관을 기준으로 안내드립니다.</p>
-    <p>보험계약 체결 전 상품설명서 및 약관을 반드시 확인하시기 바랍니다. 보험료, 보장내용, 가입 가능 여부는 피보험자의 건강상태, 직업, 계약 전 알릴 의무 및 보험회사 심사 결과에 따라 달라질 수 있습니다.</p>
-    <p>본 홈페이지의 상담 안내는 보험가입 가능 여부를 확인하기 위한 것으로, 실제 보험계약 체결 여부는 보험회사의 심사 및 승낙 결과에 따라 결정됩니다.</p>
-  </section>
 
   <footer>
     <div class="inner">
@@ -538,7 +524,7 @@
   </footer>
 
   <!-- 따라다니는 상담 신청 버튼 -->
-  <button class="floating-consult-btn" onclick="openConsultPopup()">상담 신청</button>
+  <button class="floating-consult-btn js-consult-open" type="button" onclick="openConsultPopup(); return false;">상담 신청</button>
 
   <!-- 팝업 배경 -->
   <div class="consult-overlay" id="consultOverlay" onclick="closeAllPopups()"></div>
@@ -702,9 +688,9 @@
         btn.addEventListener('click', openPrivacyPopup);
       });
 
-      document.querySelectorAll('a[href="#contact"]').forEach(function(link) {
-        if (link.textContent.replace(/\s/g, '').includes('상담신청')) {
-          link.addEventListener('click', function(e) {
+      document.querySelectorAll('.js-consult-open, a[href="#contact"], .floating-consult-btn').forEach(function(el) {
+        if (el.textContent.replace(/\s/g, '').includes('상담신청')) {
+          el.addEventListener('click', function(e) {
             e.preventDefault();
             openConsultPopup();
           });
