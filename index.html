@@ -400,7 +400,7 @@
       <div class="menu">
         <a href="#consulting">상담 분야</a>
         <a href="#process">상담 절차</a>
-        <a href="javascript:void(0)" onclick="openConsultPopup()">상담 신청</a>
+        <a href="javascript:void(0)" onclick="openGoogleForm()">상담 신청</a>
         <a href="#notice">안내사항</a>
       </div>
     </nav>
@@ -413,7 +413,7 @@
         <h1>프라임인슈랩<br>최상의 보험 컨설팅</h1>
         <p>건강보험 · 간편보험 · 운전자보험 · 자동차보험 상담 안내. 가입 가능 여부 확인부터 보장 점검, 보험금 청구 도움까지 상담해드립니다.</p>
         <div class="buttons">
-          <a class="btn btn-primary" href="javascript:void(0)" onclick="openConsultPopup()">상담 신청하기</a>
+          <a class="btn btn-primary" href="javascript:void(0)" onclick="openGoogleForm()">상담 신청하기</a>
           <a class="btn btn-kakao" href="https://open.kakao.com/o/sLJc2gxi" target="_blank" rel="noopener">카카오톡 상담하기</a>
         </div>
       </section>
@@ -489,7 +489,11 @@
         <p><strong>프라임인슈랩 보험대리점</strong><br>삼성화재 프라임인슈랩 대리점 조성복</p>
         <p>전화: 010-6814-0119<br> 카카오톡: <a href="https://open.kakao.com/o/sLJc2gxi" target="_blank" rel="noopener">오픈채팅 상담하기</a></p>
       </aside>
-      <form onsubmit="alert('상담신청 폼은 실제 사용 전 구글폼 또는 서버 전송 주소 연결이 필요합니다.'); return false;">
+      <p class="popup-text"><strong>입력 내용은 이 화면에서 바로 전송되지 않습니다.</strong><br>상담 신청하기를 누르면 구글폼으로 이동합니다.</p>
+
+    <p class="popup-text"><strong>입력 내용은 이 화면에서 바로 전송되지 않습니다.</strong><br>상담 신청하기를 누르면 구글폼으로 이동합니다.</p>
+
+    <form onsubmit="openGoogleForm(); return false;">
         <div class="field">
           <label for="name">성명</label>
           <input id="name" name="name" placeholder="성명을 입력하세요" required />
@@ -538,7 +542,7 @@
   </footer>
 
   <!-- 따라다니는 상담 신청 버튼 -->
-  <button class="floating-consult-btn" onclick="openConsultPopup()">상담 신청</button>
+  <button class="floating-consult-btn" onclick="openGoogleForm()">상담 신청</button>
 
   <!-- 팝업 배경 -->
   <div class="consult-overlay" id="consultOverlay" onclick="closeAllPopups()"></div>
@@ -548,7 +552,7 @@
     <button class="popup-close" type="button" onclick="closeConsultPopup()">×</button>
 
     <h2>상담 신청</h2>
-    <p class="popup-text">가입 가능 여부, 기존 보장 점검, 자동차보험·운전자보험 상담이 필요하시면 내용을 남겨주세요.</p>
+    <p class="popup-text">가입 가능 여부, 기존 보장 점검, 자동차보험·운전자보험 상담이 필요하시면 구글폼으로 상담 신청을 남겨주세요.</p>
 
     <div class="popup-contact-info">
       <strong>프라임인슈랩 보험대리점</strong><br>
@@ -557,7 +561,7 @@
       카카오톡: <a href="https://open.kakao.com/o/sLJc2gxi" target="_blank" rel="noopener">오픈채팅 상담하기</a>
     </div>
 
-    <form onsubmit="alert('상담신청 폼은 실제 사용 전 구글폼 또는 서버 전송 주소 연결이 필요합니다.'); return false;">
+    <form onsubmit="openGoogleForm(); return false;">
       <div class="field">
         <label for="popup-name">성명</label>
         <input id="popup-name" name="name" placeholder="성명을 입력하세요" required />
@@ -625,6 +629,16 @@
 
 
   <script>
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/여기에_구글폼_주소를_넣으세요/viewform";
+
+    function openGoogleForm() {
+      if (!GOOGLE_FORM_URL || GOOGLE_FORM_URL.includes("여기에_구글폼_주소를_넣으세요")) {
+        alert("구글폼 주소를 먼저 넣어주세요.");
+        return;
+      }
+      window.open(GOOGLE_FORM_URL, "_blank", "noopener");
+    }
+
     function openConsultPopup() {
       document.getElementById('consultPopup').classList.add('active');
       document.getElementById('consultOverlay').classList.add('active');
@@ -651,22 +665,4 @@
       if (!document.getElementById('consultPopup').classList.contains('active')) {
         document.getElementById('consultOverlay').classList.remove('active');
         document.body.style.overflow = '';
-      }
-    }
-
-    function closeAllPopups() {
-      document.getElementById('consultPopup').classList.remove('active');
-      document.getElementById('privacyPopup').classList.remove('active');
-      document.getElementById('consultOverlay').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeAllPopups();
-      }
-    });
-  </script>
-
-</body>
-</html>
+      
