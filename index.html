@@ -319,6 +319,57 @@
       color: #39465e;
     }
 
+
+    .privacy-open {
+      border: 0;
+      background: none;
+      color: #0d5bd7;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      font-size: inherit;
+    }
+    .privacy-popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(560px, calc(100% - 32px));
+      max-height: 80vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 22px;
+      padding: 26px;
+      z-index: 10001;
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      border: 1px solid #e6edf6;
+    }
+    .privacy-popup.active { display: block; }
+    .privacy-popup h2 {
+      margin-top: 0;
+      color: #0d2b57;
+      font-size: 26px;
+      letter-spacing: -1px;
+    }
+    .privacy-popup p {
+      margin: 10px 0;
+      color: #39465e;
+      font-size: 14px;
+    }
+    .privacy-close {
+      width: 100%;
+      margin-top: 18px;
+      border: 0;
+      background: #0d5bd7;
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     @media (max-width: 860px) {
 
       .floating-consult-btn {
@@ -358,7 +409,7 @@
   <main id="home" class="hero">
     <div class="hero-inner">
       <section>
-        <div class="badge">삼성화재 프라임인슈랩 대리점 조성복</div>
+        <div class="badge">삼성화재 프라임인슈랩 대리점 </div>
         <h1>프라임인슈랩<br>최상의 보험 컨설팅</h1>
         <p>건강보험 · 간편보험 · 운전자보험 · 자동차보험 상담 안내. 가입 가능 여부 확인부터 보장 점검, 보험금 청구 도움까지 상담해드립니다.</p>
         <div class="buttons">
@@ -465,7 +516,7 @@
         </div>
         <label class="agree">
           <input type="checkbox" required />
-          <span>개인정보 수집·이용에 동의합니다. 수집항목: 성명, 연락처, 상담분야, 문의내용 / 이용목적: 보험 상담 신청 접수 및 상담 안내 / 보유기간: 상담 신청일로부터 1년 또는 동의 철회 시까지.</span>
+          <span>개인정보 수집·이용에 동의합니다. <button type="button" class="privacy-open" onclick="openPrivacyPopup(event)">자세히 보기</button></span>
         </label>
         <button class="submit" type="submit">상담 신청하기</button>
       </form>
@@ -476,7 +527,7 @@
     <p><strong>안내사항</strong></p>
     <p>본 홈페이지는 보험 상담 신청 및 안내를 위한 페이지입니다. 구체적인 보험상품 내용, 보험료, 보장내용은 상담 시 상품설명서와 약관을 기준으로 안내드립니다.</p>
     <p>보험계약 체결 전 상품설명서 및 약관을 반드시 확인하시기 바랍니다. 보험료, 보장내용, 가입 가능 여부는 피보험자의 건강상태, 직업, 계약 전 알릴 의무 및 보험회사 심사 결과에 따라 달라질 수 있습니다.</p>
-    <p>본 홈페이지의 상담 안내는 보험가입 가능 여부를 확인하기 위한 것으로, 실제 보험계약 체결 여부는 보험회사의 심사 및 승낙 결과에 따라 결정됩니다..</p>
+    <p>본 홈페이지의 상담 안내는 보험가입 가능 여부를 확인하기 위한 것으로, 실제 보험계약 체결 여부는 보험회사의 심사 및 승낙 결과에 따라 결정됩니다.</p>
   </section>
 
   <footer>
@@ -490,7 +541,7 @@
   <button class="floating-consult-btn" onclick="openConsultPopup()">상담 신청</button>
 
   <!-- 팝업 배경 -->
-  <div class="consult-overlay" id="consultOverlay" onclick="closeConsultPopup()"></div>
+  <div class="consult-overlay" id="consultOverlay" onclick="closeAllPopups()"></div>
 
   <!-- 팝업 폼 -->
   <div class="consult-popup" id="consultPopup">
@@ -537,12 +588,41 @@
 
       <label class="agree">
         <input type="checkbox" required />
-        <span>개인정보 수집·이용에 동의합니다. 수집항목: 성명, 연락처, 상담분야, 문의내용 / 이용목적: 보험 상담 신청 접수 및 상담 안내 / 보유기간: 상담 신청일로부터 1년 또는 동의 철회 시까지.</span>
+        <span>개인정보 수집·이용에 동의합니다. <button type="button" class="privacy-open" onclick="openPrivacyPopup(event)">자세히 보기</button></span>
       </label>
 
       <button class="submit" type="submit">상담 신청하기</button>
     </form>
   </div>
+
+
+  <!-- 개인정보 수집·이용 동의 팝업 -->
+  <div class="privacy-popup" id="privacyPopup">
+    <h2>개인정보 수집·이용 동의</h2>
+
+    <p>프라임인슈랩은 보험 상담 신청 접수 및 상담 안내를 위하여 아래와 같이 개인정보를 수집·이용합니다.</p>
+
+    <p><strong>1. 수집·이용 목적</strong><br>
+    보험 상담 신청 접수, 상담 연락, 가입 가능 여부 확인, 문의사항 응대</p>
+
+    <p><strong>2. 수집 항목</strong><br>
+    성명, 성별, 생년월일, 연락처, 상담 희망 분야, 문의내용</p>
+
+    <p><strong>3. 보유 및 이용기간</strong><br>
+    상담 신청일로부터 1년 또는 동의 철회 시까지</p>
+
+    <p><strong>4. 동의 거부권 및 불이익</strong><br>
+    귀하는 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 다만 동의하지 않을 경우 보험 상담 신청 및 상담 안내가 제한될 수 있습니다.</p>
+
+    <p><strong>5. 개인정보 수집자</strong><br>
+    프라임인슈랩 보험대리점 / 삼성화재 프라임인슈랩 대리점 조성복</p>
+
+    <p><strong>주의사항</strong><br>
+    상담 신청 단계에서는 주민등록번호, 상세 병력, 진료기록 등 민감정보를 입력하지 마시기 바랍니다.</p>
+
+    <button type="button" class="privacy-close" onclick="closePrivacyPopup()">확인</button>
+  </div>
+
 
   <script>
     function openConsultPopup() {
@@ -553,13 +633,37 @@
 
     function closeConsultPopup() {
       document.getElementById('consultPopup').classList.remove('active');
+      if (!document.getElementById('privacyPopup').classList.contains('active')) {
+        document.getElementById('consultOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openPrivacyPopup(event) {
+      if (event) event.preventDefault();
+      document.getElementById('privacyPopup').classList.add('active');
+      document.getElementById('consultOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePrivacyPopup() {
+      document.getElementById('privacyPopup').classList.remove('active');
+      if (!document.getElementById('consultPopup').classList.contains('active')) {
+        document.getElementById('consultOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeAllPopups() {
+      document.getElementById('consultPopup').classList.remove('active');
+      document.getElementById('privacyPopup').classList.remove('active');
       document.getElementById('consultOverlay').classList.remove('active');
       document.body.style.overflow = '';
     }
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        closeConsultPopup();
+        closeAllPopups();
       }
     });
   </script>
