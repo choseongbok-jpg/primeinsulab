@@ -422,7 +422,183 @@
       font-size: 14px;
     }
 
+
+    /* 보험정보 게시판 */
+    .board-card { padding: 24px; }
+    .board-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .board-card p {
+      color: #39465e;
+      font-weight: 650;
+      margin: 0;
+    }
+    .board-write-btn {
+      border: 0;
+      background: #e4f8eb;
+      color: #008f46;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .mini-board {
+      margin-top: 14px;
+      border-top: 2px solid #172033;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e6edf6;
+    }
+    .mini-board-row {
+      display: grid;
+      grid-template-columns: 1fr 82px 92px 48px;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid #edf2f8;
+      font-size: 14px;
+      color: #39465e;
+    }
+    .mini-board-row:last-child { border-bottom: 0; }
+    .mini-board-header {
+      background: #f7f9fc;
+      font-weight: 900;
+      color: #172033;
+      text-align: center;
+    }
+    .mini-board-title {
+      font-weight: 850;
+      color: #172033;
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .mini-board-title:hover { color: #0d5bd7; text-decoration: underline; }
+    .mini-board-meta { text-align: center; color: #5b677d; }
+    .post-popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(920px, calc(100% - 32px));
+      max-height: 88vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px;
+      z-index: 10002;
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      border: 1px solid #e6edf6;
+    }
+    .post-popup.active { display: block; }
+    .post-popup h2 {
+      margin: 0 0 8px;
+      color: #111827;
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+    .post-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: #5b677d;
+      border-bottom: 1px solid #e6edf6;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      font-weight: 650;
+    }
+    .post-content {
+      color: #172033;
+      font-size: 17px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+    .post-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f6fc;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .sample-benefit-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      border: 4px solid #1348ff;
+      font-size: 20px;
+      text-align: center;
+      font-weight: 800;
+    }
+    .sample-benefit-table th, .sample-benefit-table td {
+      border: 3px solid #1348ff;
+      padding: 12px;
+    }
+    .sample-benefit-table th { background: #fff200; font-size: 24px; }
+    .sample-benefit-table .yellow { background: #fff200; }
+    .sample-benefit-table .redbox { border: 5px solid #ff2638; font-size: 34px; }
+    .post-write-popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(640px, calc(100% - 32px));
+      max-height: 88vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 24px;
+      padding: 26px;
+      z-index: 10003;
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      border: 1px solid #e6edf6;
+    }
+    .post-write-popup.active { display: block; }
+    .post-write-popup h2 { margin-top: 0; color: #0d2b57; }
+    .post-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .post-actions button {
+      flex: 1;
+      border: 0;
+      border-radius: 12px;
+      padding: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .post-save { background: #0d5bd7; color: #fff; }
+    .post-cancel { background: #eef3f8; color: #172033; }
+    .post-notice {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #fff8dd;
+      color: #5c4a00;
+      font-size: 13px;
+    }
+
     @media (max-width: 860px) {
+
+      .mini-board-row { grid-template-columns: 1fr 62px 74px 38px; font-size: 12px; padding: 10px; }
+      .post-popup, .post-write-popup { padding: 20px; }
+      .post-popup h2 { font-size: 26px; }
+      .sample-benefit-table { font-size: 14px; }
+      .sample-benefit-table th { font-size: 17px; }
+      .sample-benefit-table .redbox { font-size: 24px; }
 
       .floating-consult-btn {
         right: 16px;
@@ -470,15 +646,21 @@
           <a class="btn btn-kakao" href="https://open.kakao.com/o/sLJc2gxi" target="_blank" rel="noopener">카카오톡 상담하기</a>
         </div>
       </section>
-      <aside class="hero-card">
-        <h2>상담 안내형 홈페이지</h2>
-        <p>특정 상품명, 보험료, 보장금액을 표시하지 않고 고객 상황에 맞는 상담을 안내합니다.</p>
-        <ul class="checklist">
-          <li>✓ 기존 보장 내용 확인</li>
-          <li>✓ 가입 가능 여부 상담</li>
-          <li>✓ 계약 전 알릴 의무 안내</li>
-          <li>✓ 보험금 청구 도움 상담</li>
-        </ul>
+      <aside class="hero-card board-card">
+        <div class="board-head">
+          <div>
+            <h2>프라임인슈랩 보험정보</h2>
+            <p>카페 게시글처럼 보험정보·상담사례를 올리는 공간입니다.</p>
+          </div>
+          <button type="button" class="board-write-btn" onclick="openPostWritePopup()">글쓰기</button>
+        </div>
+
+        <div class="mini-board">
+          <div class="mini-board-row mini-board-header">
+            <span>제목</span><span>작성자</span><span>작성일</span><span>조회</span>
+          </div>
+          <div id="heroPostList"></div>
+        </div>
       </aside>
     </div>
   </main>
@@ -726,7 +908,160 @@
   </div>
 
 
+  <!-- 보험정보 게시글 보기 팝업 -->
+  <div class="post-popup" id="postViewPopup">
+    <button class="post-close" type="button" onclick="closePostViewPopup()">×</button>
+    <h2 id="postViewTitle"></h2>
+    <div class="post-meta">
+      <span id="postViewCategory"></span>
+      <span id="postViewAuthor"></span>
+      <span id="postViewDate"></span>
+      <span id="postViewViews"></span>
+      <button type="button" class="privacy-open" onclick="copyPostUrl()">URL 복사</button>
+    </div>
+    <div class="post-content" id="postViewContent"></div>
+  </div>
+
+  <!-- 보험정보 글쓰기 팝업 -->
+  <div class="post-write-popup" id="postWritePopup">
+    <button class="post-close" type="button" onclick="closePostWritePopup()">×</button>
+    <h2>보험정보 글쓰기</h2>
+    <div class="field">
+      <label for="postTitleInput">제목</label>
+      <input id="postTitleInput" placeholder="예: 뇌혈관질환 진단비 청구 시 확인할 서류">
+    </div>
+    <div class="field">
+      <label for="postCategoryInput">분류</label>
+      <select id="postCategoryInput">
+        <option>보험정보</option>
+        <option>상담사례</option>
+        <option>보험금청구</option>
+        <option>공지</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="postContentInput">내용</label>
+      <textarea id="postContentInput" placeholder="게시글 내용을 입력하세요. 주민등록번호, 상세 병력 등 민감정보는 올리지 마세요."></textarea>
+    </div>
+    <div class="post-actions">
+      <button class="post-save" type="button" onclick="savePost()">등록</button>
+      <button class="post-cancel" type="button" onclick="closePostWritePopup()">취소</button>
+    </div>
+    <div class="post-notice">
+      현재 파일은 서버 게시판이 아니라 브라우저 저장 방식입니다. 실제 홈페이지 방문자 모두에게 글을 보여주려면 구글시트 연동, 가비아 게시판, 워드프레스 같은 저장 기능이 필요합니다.
+    </div>
+  </div>
+
+
   <script>
+
+    var primePosts = [
+      {
+        id: 'post-1',
+        category: '보험정보',
+        title: '삼성화재 특정순환계질환 특정치료비',
+        author: '프라임인슈랩',
+        date: '2026.04.12',
+        views: 35,
+        content: '<p>심·뇌혈관 진단비는 보장명과 약관상 지급조건을 정확히 확인해야 합니다.</p><table class="sample-benefit-table"><tr><th colspan="3">심·뇌혈관 진단비 매년 반복 보장 예시</th></tr><tr><td>구분</td><td>심·뇌혈관 진단비</td><td>특정치료비</td></tr><tr><td>뇌·심 보장 금액</td><td>2000만원</td><td>2000만원</td></tr><tr><td class="yellow">보장횟수</td><td class="yellow">1회</td><td class="yellow">보험기간 전체</td></tr><tr><td>뇌출혈·급성심근경색</td><td>지급</td><td>지급</td></tr><tr><td>뇌졸중·협심증</td><td>지급</td><td>지급</td></tr><tr><td>뇌혈관·허혈성심장질환</td><td>지급</td><td>지급</td></tr><tr><td class="redbox">심장정지·부정맥·방실차단 등</td><td class="redbox">부지급</td><td class="redbox">지급</td></tr></table><p>※ 실제 보장 여부는 상품 종류, 특약, 가입 시기, 약관 및 보험회사 심사 결과에 따라 달라질 수 있습니다.</p>'
+      },
+      {
+        id: 'post-2',
+        category: '보험정보',
+        title: '종합병원 암 전액본인부담 통합치료비',
+        author: '프라임인슈랩',
+        date: '2026.04.11',
+        views: 35,
+        content: '<p>종합병원 암 치료비는 급여·비급여 여부, 치료 목적, 약관상 지급조건에 따라 심사 결과가 달라질 수 있습니다.</p><p>상담 전에는 현재 가입된 증권, 특약명, 진단서, 진료비 영수증, 세부내역서를 함께 확인하는 것이 좋습니다.</p>'
+      }
+    ];
+
+    function loadSavedPosts() {
+      try {
+        var saved = JSON.parse(localStorage.getItem('primeInsulabPosts') || '[]');
+        primePosts = saved.concat(primePosts);
+      } catch(e) {}
+    }
+
+    function renderHeroPosts() {
+      var list = document.getElementById('heroPostList');
+      if (!list) return;
+      list.innerHTML = '';
+      primePosts.slice(0, 5).forEach(function(post, index) {
+        var row = document.createElement('div');
+        row.className = 'mini-board-row';
+        row.innerHTML = '<span class="mini-board-title" onclick="openPostViewPopup(' + index + ')">' + post.title + '</span>' +
+          '<span class="mini-board-meta">' + post.author + '</span>' +
+          '<span class="mini-board-meta">' + post.date + '</span>' +
+          '<span class="mini-board-meta">' + post.views + '</span>';
+        list.appendChild(row);
+      });
+    }
+
+    function openPostViewPopup(index) {
+      var post = primePosts[index];
+      if (!post) return;
+      post.views = Number(post.views || 0) + 1;
+      document.getElementById('postViewTitle').textContent = post.title;
+      document.getElementById('postViewCategory').textContent = post.category;
+      document.getElementById('postViewAuthor').textContent = '작성자 ' + post.author;
+      document.getElementById('postViewDate').textContent = '작성일 ' + post.date;
+      document.getElementById('postViewViews').textContent = '조회 ' + post.views;
+      document.getElementById('postViewContent').innerHTML = post.content;
+      document.getElementById('postViewPopup').classList.add('active');
+      document.getElementById('consultOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderHeroPosts();
+    }
+
+    function closePostViewPopup() {
+      document.getElementById('postViewPopup').classList.remove('active');
+      if (!document.getElementById('consultPopup').classList.contains('active') && !document.getElementById('privacyPopup').classList.contains('active') && !document.getElementById('postWritePopup').classList.contains('active')) {
+        document.getElementById('consultOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openPostWritePopup() {
+      document.getElementById('postWritePopup').classList.add('active');
+      document.getElementById('consultOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePostWritePopup() {
+      document.getElementById('postWritePopup').classList.remove('active');
+      if (!document.getElementById('consultPopup').classList.contains('active') && !document.getElementById('privacyPopup').classList.contains('active') && !document.getElementById('postViewPopup').classList.contains('active')) {
+        document.getElementById('consultOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function savePost() {
+      var title = document.getElementById('postTitleInput').value.trim();
+      var category = document.getElementById('postCategoryInput').value;
+      var content = document.getElementById('postContentInput').value.trim();
+      if (!title || !content) { alert('제목과 내용을 입력해 주세요.'); return; }
+      var today = new Date();
+      var date = today.getFullYear() + '.' + String(today.getMonth()+1).padStart(2,'0') + '.' + String(today.getDate()).padStart(2,'0');
+      var safeContent = content.replace(/[&<>]/g, function(ch) { return {'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]; }).replace(/\n/g, '<br>');
+      var newPost = { id: 'post-' + Date.now(), category: category, title: title, author: '프라임인슈랩', date: date, views: 0, content: '<p>' + safeContent + '</p>' };
+      var saved = [];
+      try { saved = JSON.parse(localStorage.getItem('primeInsulabPosts') || '[]'); } catch(e) {}
+      saved.unshift(newPost);
+      localStorage.setItem('primeInsulabPosts', JSON.stringify(saved));
+      primePosts.unshift(newPost);
+      document.getElementById('postTitleInput').value = '';
+      document.getElementById('postContentInput').value = '';
+      closePostWritePopup();
+      renderHeroPosts();
+      alert('게시글이 등록되었습니다.');
+    }
+
+    function copyPostUrl() {
+      navigator.clipboard && navigator.clipboard.writeText(location.href);
+      alert('현재 홈페이지 주소가 복사되었습니다.');
+    }
+
     function openConsultPopup() {
       var consultPopup = document.getElementById('consultPopup');
       var overlay = document.getElementById('consultOverlay');
@@ -792,6 +1127,8 @@
     function closeAllPopups() {
       document.getElementById('consultPopup').classList.remove('active');
       document.getElementById('privacyPopup').classList.remove('active');
+      document.getElementById('postViewPopup').classList.remove('active');
+      document.getElementById('postWritePopup').classList.remove('active');
       document.getElementById('consultOverlay').classList.remove('active');
       document.body.style.overflow = '';
 
@@ -801,6 +1138,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+      loadSavedPosts();
+      renderHeroPosts();
+
       document.querySelectorAll('.privacy-open').forEach(function(btn) {
         btn.addEventListener('click', openPrivacyPopup);
       });
